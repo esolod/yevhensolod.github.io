@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevhen Solod | NinjaTrader 8 Developer</title>
+<meta name="description" content="NinjaTrader 8 indicators, drawing tools and custom development. ICT Session Levels, Session Volume Profile, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0d1117;--bg2:#161b22;--bg3:#1c2128;
+--text:#e6edf3;--text2:#8b949e;--text3:#6e7681;
+--border:#30363d;
+--blue:#6495ED;--orange:#FF8C00;--green:#97C459;--purple:#AFA9EC;
+--radius:10px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--blue);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+
+.container{max-width:720px;margin:0 auto;padding:0 24px}
+
+/* Hero */
+.hero{padding:80px 0 60px;text-align:center}
+.hero-avatar{width:120px;height:120px;border-radius:50%;margin:0 auto 24px;border:3px solid var(--border);object-fit:cover}
+.hero h1{font-size:32px;font-weight:700;letter-spacing:-0.5px;margin-bottom:8px}
+.hero p{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text2);letter-spacing:0.5px}
+
+/* Section */
+.section{padding:48px 0}
+.section-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:32px}
+
+/* Product cards */
+.product{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:20px;transition:border-color .2s}
+.product:hover{border-color:var(--text3)}
+.product-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:16px}
+.product h3{font-size:18px;font-weight:600}
+.product-price{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;color:var(--orange);white-space:nowrap}
+.product p{font-size:14px;color:var(--text2);margin-bottom:16px;line-height:1.7}
+.product-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:20px;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.tag.blue{background:rgba(100,149,237,.12);color:var(--blue);border-color:rgba(100,149,237,.25)}
+.tag.orange{background:rgba(255,140,0,.10);color:var(--orange);border-color:rgba(255,140,0,.2)}
+.tag.green{background:rgba(151,196,89,.10);color:var(--green);border-color:rgba(151,196,89,.2)}
+.tag.purple{background:rgba(175,169,236,.10);color:var(--purple);border-color:rgba(175,169,236,.2)}
+
+.btn{display:inline-block;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:10px 24px;border-radius:8px;transition:all .2s;cursor:pointer;text-align:center}
+.btn-primary{background:var(--orange);color:#000;border:none}
+.btn-primary:hover{opacity:.9;color:#000}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--text2);opacity:1}
+
+/* Services */
+.services{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.services h3{font-size:18px;font-weight:600;margin-bottom:12px}
+.services p{font-size:14px;color:var(--text2);margin-bottom:8px;line-height:1.7}
+.services-platforms{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text3);margin-bottom:20px}
+
+/* Contact */
+.contact-links{display:flex;flex-wrap:wrap;gap:12px}
+.contact-link{display:inline-flex;align-items:center;gap:8px;font-size:14px;padding:10px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--text);transition:border-color .2s}
+.contact-link:hover{border-color:var(--text3);opacity:1}
+.contact-link svg{width:16px;height:16px;fill:var(--text2)}
+
+/* NinjaTrader disclaimer */
+.disclaimer{padding:40px 0;border-top:1px solid var(--border);margin-top:48px}
+.disclaimer p{font-size:12px;color:var(--text3);line-height:1.7}
+.disclaimer a{color:var(--text3);text-decoration:underline}
+
+/* Footer */
+.footer{padding:24px 0;text-align:center}
+.footer p{font-size:12px;color:var(--text3)}
+
+/* Mobile */
+@media(max-width:600px){
+.hero{padding:48px 0 40px}
+.hero h1{font-size:26px}
+.product-header{flex-direction:column;gap:8px}
+.contact-links{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+<div class="container">
+<img src="avatar.png" alt="Yevhen Solod" class="hero-avatar">
+<h1>Yevhen Solod</h1>
+<p>NinjaTrader 8 Developer · Trading Tools & Indicators</p>
+</div>
+</section>
+
+<!-- Products -->
+<section class="section">
+<div class="container">
+<div class="section-title">Products</div>
+
+<div class="product">
+<div class="product-header">
+<h3>ICT Session Levels</h3>
+<span class="product-price">$39</span>
+</div>
+<p>Automatically plots all key session levels on your chart — Asian range, London range, Pre-Trade, RTH, Opening Range, and Previous Day/Week highs and lows. All sessions fully configurable.</p>
+<div class="product-tags">
+<span class="tag green">Asia</span>
+<span class="tag blue">London</span>
+<span class="tag orange">Pre-Trade</span>
+<span class="tag purple">RTH</span>
+<span class="tag">Opening Range</span>
+<span class="tag">Prev Day/Week</span>
+</div>
+<a href="https://solodyn.gumroad.com/l/ICTSessionLevels" class="btn btn-primary" target="_blank">Get on Gumroad</a>
+</div>
+
+<div class="product">
+<div class="product-header">
+<h3>Session Volume Profile Bundle</h3>
+<span class="product-price">$69</span>
+</div>
+<p>Session-based Volume Profile indicator with left/right chart anchoring + Anchored Volume Profile Drawing Tool. Draw VP for any custom range with Ctrl+A. POC, VAH/VAL, and High Volume Node auto-detection.</p>
+<div class="product-tags">
+<span class="tag orange">POC</span>
+<span class="tag blue">VAH/VAL</span>
+<span class="tag">HVN Peaks</span>
+<span class="tag">6 Display Modes</span>
+<span class="tag green">Tick/Min Source</span>
+<span class="tag purple">Drawing Tool</span>
+</div>
+<a href="https://solodyn.gumroad.com/" class="btn btn-primary" target="_blank">Get on Gumroad</a>
+</div>
+
+</div>
+</section>
+
+<!-- Services -->
+<section class="section">
+<div class="container">
+<div class="section-title">Custom Development</div>
+<div class="services">
+<h3>Need something built?</h3>
+<p>10+ years building indicators, strategies, drawing tools, bar types and add-ons for trading platforms. Clean code, fast delivery, ongoing support.</p>
+<p class="services-platforms">NinjaTrader 8 · MetaTrader 4/5 · cTrader</p>
+<a href="mailto:yevhensolod@gmail.com" class="btn btn-outline">Get in touch</a>
+</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section class="section">
+<div class="container">
+<div class="section-title">Contact</div>
+<div class="contact-links">
+<a href="mailto:yevhensolod@gmail.com" class="contact-link">
+<svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22 6l-10 7L2 6"/></svg>
+yevhensolod@gmail.com
+</a>
+<a href="https://t.me/yevhensolod" class="contact-link" target="_blank">
+<svg viewBox="0 0 24 24"><path d="M21.2 4.4L2.4 11.3c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.9 5.9c.2.6.4.8.8.8s.6-.2.8-.4l2.3-2.3 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.2-1.4z"/></svg>
+@yevhensolod
+</a>
+<a href="https://x.com/esolod2026" class="contact-link" target="_blank">
+<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+@esolod2026
+</a>
+</div>
+</div>
+</section>
+
+<!-- NinjaTrader Disclaimer (placeholder) -->
+<div class="container">
+<section class="disclaimer">
+<p>Official <a href="https://ninjatraderecosystem.com/" target="_blank">NinjaTrader Ecosystem</a> Vendor. NinjaTrader® disclaimer and vendor requirements will be added here.</p>
+</section>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+<p>© 2026 Yevhen Solod · yevhensolod.studio</p>
+</div>
+</footer>
+
+</body>
+</html>
