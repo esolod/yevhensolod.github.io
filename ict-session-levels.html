@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICT Session Levels Indicator for NinjaTrader 8 | Yevhen Solod</title>
+<meta name="description" content="ICT Session Levels indicator for NinjaTrader 8: Asian range, London range, Pre-Trade, RTH, Opening Range and Previous Day/Week highs and lows — all fully configurable. Free 1-day trial.">
+<link rel="canonical" href="https://yevhensolod.studio/ict-session-levels.html">
+
+<meta property="og:type" content="product">
+<meta property="og:title" content="ICT Session Levels Indicator for NinjaTrader 8">
+<meta property="og:description" content="Asian, London, Pre-Trade, RTH, Opening Range, Prev Day/Week H/L — plotted automatically, fully configurable. Free 1-day trial.">
+<meta property="og:image" content="https://yevhensolod.studio/og-ict.png">
+<meta property="og:url" content="https://yevhensolod.studio/ict-session-levels.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "ICT Session Levels Indicator for NinjaTrader 8",
+  "description": "Automatically plots key session levels on NinjaTrader 8 charts: Asian range, London range, Pre-Trade, RTH, Opening Range, and Previous Day/Week highs and lows. All sessions fully configurable.",
+  "image": "https://yevhensolod.studio/og-ict.png",
+  "brand": { "@type": "Brand", "name": "Yevhen Solod" },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://solodyn.gumroad.com/l/ICTSessionLevels",
+    "price": "29.00",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I change the session times?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every session — Asian, London, Pre-Trade, RTH and Opening Range — has configurable start and end times, so you can adapt the indicator to your instrument, timezone and trading model." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it show Previous Day and Previous Week highs and lows?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Previous Day High/Low and Previous Week High/Low are plotted automatically and can be toggled independently." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free trial?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. A 1-day trial of the full version is available with no signup required." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which NinjaTrader version is supported?",
+      "acceptedAnswer": { "@type": "Answer", "text": "NinjaTrader 8. The indicator installs as a standard NT8 add-on via Tools → Import → NinjaScript Add-On." }
+    }
+  ]
+}
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5ETQBRGPSS"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ETQBRGPSS');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0d1117;--bg2:#161b22;--bg3:#1c2128;
+--text:#e6edf3;--text2:#8b949e;--text3:#6e7681;
+--border:#30363d;
+--blue:#6495ED;--orange:#FF8C00;--green:#97C459;--purple:#AFA9EC;
+--radius:10px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--blue);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+.container{max-width:720px;margin:0 auto;padding:0 24px}
+
+/* Top nav */
+.topnav{padding:20px 0;border-bottom:1px solid var(--border)}
+.topnav a{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text2)}
+.topnav a:hover{color:var(--text)}
+
+/* Hero */
+.hero{padding:56px 0 40px}
+.hero h1{font-size:30px;font-weight:700;letter-spacing:-0.5px;margin-bottom:12px;line-height:1.25}
+.hero .sub{font-size:16px;color:var(--text2);margin-bottom:20px;line-height:1.7}
+.price-line{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--orange);margin-bottom:24px}
+.btn{display:inline-block;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:11px 26px;border-radius:8px;transition:all .2s;cursor:pointer;text-align:center}
+.btn-primary{background:var(--orange);color:#000;border:none}
+.btn-primary:hover{opacity:.9;color:#000}
+.btn-trial{background:transparent;color:var(--text2);border:1px solid var(--border);font-size:13px}
+.btn-trial:hover{border-color:var(--text2);color:var(--text);opacity:1}
+.btn-group{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.trial-note{font-size:11px;color:var(--text3);margin-top:8px}
+.product-tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 24px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:20px;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.tag.blue{background:rgba(100,149,237,.12);color:var(--blue);border-color:rgba(100,149,237,.25)}
+.tag.orange{background:rgba(255,140,0,.10);color:var(--orange);border-color:rgba(255,140,0,.2)}
+.tag.green{background:rgba(151,196,89,.10);color:var(--green);border-color:rgba(151,196,89,.2)}
+.tag.purple{background:rgba(175,169,236,.10);color:var(--purple);border-color:rgba(175,169,236,.2)}
+
+/* Sections */
+.section{padding:40px 0}
+.section-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:24px}
+.section h2{font-size:20px;font-weight:600;margin-bottom:16px}
+.section p{font-size:14px;color:var(--text2);margin-bottom:14px;line-height:1.8}
+.section strong{color:var(--text)}
+
+/* Feature cards */
+.features{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.feature{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.feature h3{font-size:14px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.feature p{font-size:13px;color:var(--text2);line-height:1.7;margin:0}
+
+/* Steps */
+.steps{counter-reset:step}
+.step{display:flex;gap:14px;margin-bottom:16px}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--orange);min-width:24px;font-weight:600}
+.step p{margin:0}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border);padding:18px 0}
+.faq-item h3{font-size:15px;font-weight:600;margin-bottom:8px}
+.faq-item p{margin:0}
+
+/* Screenshot */
+.shot{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:20px;overflow:hidden}
+.shot img{display:block;width:100%;height:auto}
+
+/* CTA */
+.cta{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;text-align:center}
+.cta h2{margin-bottom:8px}
+.cta p{margin-bottom:20px}
+
+/* Disclaimer / Footer */
+.disclaimer{padding:40px 0;border-top:1px solid var(--border);margin-top:48px}
+.disclaimer p{font-size:12px;color:var(--text3);line-height:1.7}
+.disclaimer a{color:var(--text3);text-decoration:underline}
+.footer{padding:24px 0;text-align:center}
+.footer p{font-size:12px;color:var(--text3)}
+
+@media(max-width:600px){
+.hero h1{font-size:24px}
+.features{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+<div class="container">
+<a href="index.html">← Yevhen Solod · NinjaTrader 8 Developer</a>
+</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+<div class="container">
+<h1>ICT Session Levels Indicator for NinjaTrader 8</h1>
+<p class="sub">Plots every key session level ICT traders use — Asian range, London range, Pre-Trade, RTH, Opening Range, Previous Day and Previous Week highs and lows — automatically, on any chart. No manual drawing, no missed levels.</p>
+<div class="product-tags">
+<span class="tag green">Asia</span>
+<span class="tag blue">London</span>
+<span class="tag orange">Pre-Trade</span>
+<span class="tag purple">RTH</span>
+<span class="tag">Opening Range</span>
+<span class="tag">Prev Day/Week</span>
+</div>
+<p class="price-line">$29</p>
+<div class="btn-group">
+<a href="https://solodyn.gumroad.com/l/ICTSessionLevels" class="btn btn-primary" target="_blank">Get on Gumroad</a>
+<a href="downloads/ICTSessionLevels.zip" class="btn btn-trial" download>Try for free</a>
+</div>
+<p class="trial-note">1-day trial · Full version · No signup required</p>
+</div>
+</section>
+
+<!-- Screenshot -->
+<section class="section">
+<div class="container">
+<div class="shot">
+<img src="screens/ict-main.png" alt="ICT Session Levels indicator on a NinjaTrader 8 chart showing Asian range, London range, Opening Range and previous day high and low" loading="lazy">
+</div>
+</div>
+</section>
+
+<!-- Features -->
+<section class="section">
+<div class="container">
+<div class="section-title">What it plots</div>
+<div class="features">
+<div class="feature">
+<h3>Asian session range</h3>
+<p>The overnight accumulation range that frames liquidity for the London open — high, low and zone shading, with configurable times.</p>
+</div>
+<div class="feature">
+<h3>London session range</h3>
+<p>The London Killzone range where the day's initial expansion usually happens. Track its high/low as intraday reference levels.</p>
+</div>
+<div class="feature">
+<h3>Pre-Trade &amp; RTH zones</h3>
+<p>Pre-market and regular trading hours plotted as separate configurable zones, so the New York open context is always on the chart.</p>
+</div>
+<div class="feature">
+<h3>Opening Range</h3>
+<p>Configurable Opening Range (e.g. first 15/30/60 minutes) — a standard reference for breakout and reversion setups.</p>
+</div>
+<div class="feature">
+<h3>Previous Day High/Low</h3>
+<p>PDH and PDL — the most commonly targeted liquidity pools in ICT-style models — drawn and extended automatically.</p>
+</div>
+<div class="feature">
+<h3>Previous Week High/Low</h3>
+<p>PWH and PWL for higher-timeframe draw on liquidity, toggleable independently from daily levels.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Why -->
+<section class="section">
+<div class="container">
+<div class="section-title">Why automate session levels</div>
+<p>ICT-style trading lives on session structure: the Asian range sets the stage, London runs the stops, and New York delivers to <strong>previous day and week highs and lows</strong>. Drawing these levels by hand every day is slow and error-prone — one wrong session boundary and the whole read is off.</p>
+<p>This indicator plots every level from exchange data with your exact session definitions. Each session is <strong>fully configurable</strong> — times, colors, zone shading, which levels to show — so the same install works for futures indices, FX futures, or anything else you trade on NinjaTrader 8.</p>
+<p>Typical uses: Judas swing setups off the Asian range, London Killzone breakouts, Opening Range reversals, and targeting PDH/PDL liquidity in the New York session.</p>
+</div>
+</section>
+
+<!-- Installation -->
+<section class="section">
+<div class="container">
+<div class="section-title">Installation</div>
+<div class="steps">
+<div class="step"><span class="step-num">1</span><p>Download the .zip file (trial or full version from Gumroad).</p></div>
+<div class="step"><span class="step-num">2</span><p>In NinjaTrader 8: <strong>Tools → Import → NinjaScript Add-On</strong>, select the .zip.</p></div>
+<div class="step"><span class="step-num">3</span><p>Restart NinjaTrader and add <strong>ICT Session Levels</strong> to any chart. Configure session times in the indicator settings.</p></div>
+<div class="step"><span class="step-num">4</span><p>Full version: send your Machine ID after purchase — activation is confirmed the same day, then restart NT8.</p></div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+<div class="container">
+<div class="section-title">FAQ</div>
+<div class="faq-item">
+<h3>Can I change the session times?</h3>
+<p>Yes — every session has configurable start/end times, so you can match your instrument, timezone and trading model exactly.</p>
+</div>
+<div class="faq-item">
+<h3>Does it work on any instrument?</h3>
+<p>Yes. It works on any NinjaTrader 8 chart — index futures, FX futures, stocks — with sessions defined in your chosen timezone.</p>
+</div>
+<div class="faq-item">
+<h3>Can I hide levels I don't use?</h3>
+<p>Yes. Every session and level (including Prev Day/Week H/L and Opening Range) toggles on/off independently.</p>
+</div>
+<div class="faq-item">
+<h3>Is the trial limited?</h3>
+<p>The trial is the full version, limited to 1 day. No signup, no email required.</p>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+<div class="container">
+<div class="cta">
+<h2>Get ICT Session Levels</h2>
+<p>All key sessions and levels, fully configurable · Lifetime license · Support included</p>
+<div class="btn-group" style="justify-content:center">
+<a href="https://solodyn.gumroad.com/l/ICTSessionLevels" class="btn btn-primary" target="_blank">Get on Gumroad — $29</a>
+<a href="downloads/ICTSessionLevels.zip" class="btn btn-trial" download>Try free for 1 day</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Disclaimer -->
+<div class="container">
+<section class="disclaimer">
+<p>Official <a href="https://ninjatraderecosystem.com/" target="_blank">NinjaTrader Ecosystem</a> Vendor. NinjaTrader® disclaimer and vendor requirements will be added here.</p>
+</section>
+</div>
+
+<footer class="footer">
+<div class="container">
+<p>© 2026 Yevhen Solod · <a href="index.html">yevhensolod.studio</a></p>
+</div>
+</footer>
+
+</body>
+</html>
