@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Structure Indicator for NinjaTrader 8 | Yevhen Solod</title>
+<meta name="description" content="Market Structure indicator for NinjaTrader 8: dual-tier Minor/Major swing detection, BOS and CHoCH confirmed strictly by candle close. No ATR, no lookback, no fractals. Free 1-day trial.">
+<link rel="canonical" href="https://yevhensolod.studio/market-structure.html">
+
+<meta property="og:type" content="product">
+<meta property="og:title" content="Market Structure Indicator for NinjaTrader 8">
+<meta property="og:description" content="Pure price-action BOS/CHoCH market structure, Minor + Major tiers, no repaint. Free 1-day trial.">
+<meta property="og:image" content="https://yevhensolod.studio/og-marketstructure.png">
+<meta property="og:url" content="https://yevhensolod.studio/market-structure.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Market Structure Indicator for NinjaTrader 8",
+  "description": "Pure price-action market structure indicator for NinjaTrader 8. Dual-tier Minor/Major swing detection with BOS and CHoCH confirmed strictly by candle close. No ATR, no lookback period, no fractals.",
+  "image": "https://yevhensolod.studio/og-marketstructure.png",
+  "brand": { "@type": "Brand", "name": "Yevhen Solod" },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://solodyn.gumroad.com/l/marketstructure",
+    "price": "99.00",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this use ATR or a lookback period?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Swing points and BOS/CHoCH are confirmed purely by candle close — no ATR multiplier, no fixed lookback, no fractals to configure." }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between Minor and Major structure?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Minor is internal structure — every swing as it forms. Major filters that down to swing-level structure. Both run independently and can be toggled and styled separately." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it repaint?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. A swing or a BOS/CHoCH only confirms once a candle closes beyond the relevant level — it does not move or disappear on later bars." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free trial?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. A 1-day trial of the full version is available with no signup required." }
+    }
+  ]
+}
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5ETQBRGPSS"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ETQBRGPSS');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0d1117;--bg2:#161b22;--bg3:#1c2128;
+--text:#e6edf3;--text2:#8b949e;--text3:#6e7681;
+--border:#30363d;
+--blue:#6495ED;--orange:#FF8C00;--green:#97C459;--purple:#AFA9EC;
+--radius:10px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--blue);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+.container{max-width:720px;margin:0 auto;padding:0 24px}
+
+/* Top nav */
+.topnav{padding:20px 0;border-bottom:1px solid var(--border)}
+.topnav a{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text2)}
+.topnav a:hover{color:var(--text)}
+
+/* Hero */
+.hero{padding:56px 0 40px}
+.hero h1{font-size:30px;font-weight:700;letter-spacing:-0.5px;margin-bottom:12px;line-height:1.25}
+.hero .sub{font-size:16px;color:var(--text2);margin-bottom:20px;line-height:1.7}
+.price-line{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--orange);margin-bottom:24px}
+.btn{display:inline-block;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:11px 26px;border-radius:8px;transition:all .2s;cursor:pointer;text-align:center}
+.btn-primary{background:var(--orange);color:#000;border:none}
+.btn-primary:hover{opacity:.9;color:#000}
+.btn-trial{background:transparent;color:var(--text2);border:1px solid var(--border);font-size:13px}
+.btn-trial:hover{border-color:var(--text2);color:var(--text);opacity:1}
+.btn-group{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.trial-note{font-size:11px;color:var(--text3);margin-top:8px}
+.product-tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 24px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:20px;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.tag.blue{background:rgba(100,149,237,.12);color:var(--blue);border-color:rgba(100,149,237,.25)}
+.tag.orange{background:rgba(255,140,0,.10);color:var(--orange);border-color:rgba(255,140,0,.2)}
+.tag.green{background:rgba(151,196,89,.10);color:var(--green);border-color:rgba(151,196,89,.2)}
+.tag.purple{background:rgba(175,169,236,.10);color:var(--purple);border-color:rgba(175,169,236,.2)}
+
+/* Sections */
+.section{padding:40px 0}
+.section-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:24px}
+.section h2{font-size:20px;font-weight:600;margin-bottom:16px}
+.section p{font-size:14px;color:var(--text2);margin-bottom:14px;line-height:1.8}
+.section strong{color:var(--text)}
+
+/* Feature cards */
+.features{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.feature{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.feature h3{font-size:14px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.feature p{font-size:13px;color:var(--text2);line-height:1.7;margin:0}
+
+/* Steps */
+.steps{counter-reset:step}
+.step{display:flex;gap:14px;margin-bottom:16px}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--orange);min-width:24px;font-weight:600}
+.step p{margin:0}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border);padding:18px 0}
+.faq-item h3{font-size:15px;font-weight:600;margin-bottom:8px}
+.faq-item p{margin:0}
+
+/* Screenshot */
+.shot{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:20px;overflow:hidden}
+.shot img{display:block;width:100%;height:auto}
+
+/* CTA */
+.cta{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;text-align:center}
+.cta h2{margin-bottom:8px}
+.cta p{margin-bottom:20px}
+
+/* Disclaimer / Footer */
+.disclaimer{padding:40px 0;border-top:1px solid var(--border);margin-top:48px}
+.nt-logo-link{display:inline-block;padding:18px;margin:-18px -18px 6px -18px}
+.nt-logo{display:block;width:220px;height:auto}
+.disclaimer p{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:12px}
+.disclaimer a{color:var(--text2);text-decoration:underline}
+.footer{padding:24px 0;text-align:center}
+.footer p{font-size:12px;color:var(--text3)}
+
+@media(max-width:600px){
+.hero h1{font-size:24px}
+.features{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+<div class="container">
+<a href="index.html">← Yevhen Solod · NinjaTrader 8 Developer</a>
+</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+<div class="container">
+<h1>Market Structure Indicator for NinjaTrader 8</h1>
+<p class="sub">Tracks swing highs and lows the way price actually moves — candle by candle, confirming BOS and CHoCH only when a candle closes beyond the prior level. No ATR, no fixed lookback window, no fractals.</p>
+<div class="product-tags">
+<span class="tag green">Minor</span>
+<span class="tag blue">Major</span>
+<span class="tag orange">BOS</span>
+<span class="tag purple">CHoCH</span>
+<span class="tag">No Repaint</span>
+<span class="tag">No ATR</span>
+</div>
+<p class="price-line">$99</p>
+<div class="btn-group">
+<a href="https://solodyn.gumroad.com/l/marketstructure" class="btn btn-primary" target="_blank">Get on Gumroad</a>
+<a href="downloads/MarketStructure.zip" class="btn btn-trial" download>Try for free</a>
+</div>
+<p class="trial-note">1-day trial · Full version · No signup required</p>
+</div>
+</section>
+
+<!-- Screenshot -->
+<section class="section">
+<div class="container">
+<div class="shot">
+<img src="screens/market-structure-main.png" alt="Market Structure indicator on a NinjaTrader 8 chart showing Minor and Major BOS and CHoCH labels" loading="lazy">
+</div>
+</div>
+</section>
+
+<!-- Features -->
+<section class="section">
+<div class="container">
+<div class="section-title">What it detects</div>
+<div class="features">
+<div class="feature">
+<h3>Minor (internal) structure</h3>
+<p>Every swing high and low as price forms them — HH, LH, HL, LL — updated candle by candle, no repainting.</p>
+</div>
+<div class="feature">
+<h3>Major (swing) structure</h3>
+<p>Minor structure filters automatically into higher-level swing structure, so you see both the noise and the signal on the same chart.</p>
+</div>
+<div class="feature">
+<h3>BOS — Break of Structure</h3>
+<p>Confirms trend continuation the moment a candle closes beyond the prior swing level.</p>
+</div>
+<div class="feature">
+<h3>CHoCH — Change of Character</h3>
+<p>Confirms a trend reversal the moment a candle closes beyond the opposing swing level.</p>
+</div>
+<div class="feature">
+<h3>No ATR, no lookback, no fractals</h3>
+<p>Structure is derived purely from price — no multiplier or period to tune, no "right" swing size to guess at.</p>
+</div>
+<div class="feature">
+<h3>Fully configurable rendering</h3>
+<p>Independent font, color and line style for Minor structure, Major structure, and unconfirmed Weak Swings.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Why -->
+<section class="section">
+<div class="container">
+<div class="section-title">Why price-action-only structure</div>
+<p>Most market structure indicators lean on ATR multipliers or fixed lookback windows to decide what counts as a swing — which means the same chart can show a different structure depending on a setting, and everything repaints as that setting gets tuned.</p>
+<p>Market Structure works the other way: a swing high or low is only ever confirmed when a candle <strong>closes</strong> beyond it. Nothing is inferred from volatility, nothing is assumed from a fixed number of bars. What you see on a closed bar does not change on a later bar.</p>
+<p>Typical uses: reading trend direction objectively without discretionary swing-drawing, spotting CHoCH reversals early, and using Minor structure as a faster-reacting layer underneath Major swing context.</p>
+</div>
+</section>
+
+<!-- Installation -->
+<section class="section">
+<div class="container">
+<div class="section-title">Installation</div>
+<div class="steps">
+<div class="step"><span class="step-num">1</span><p>Download the .zip file (trial or full version from Gumroad).</p></div>
+<div class="step"><span class="step-num">2</span><p>In NinjaTrader 8: <strong>Tools → Import → NinjaScript Add-On</strong>, select the .zip.</p></div>
+<div class="step"><span class="step-num">3</span><p>Restart NinjaTrader and add <strong>Market Structure</strong> to any chart.</p></div>
+<div class="step"><span class="step-num">4</span><p>Full version: send your Machine ID after purchase — activation is confirmed the same day, then restart NT8.</p></div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+<div class="container">
+<div class="section-title">FAQ</div>
+<div class="faq-item">
+<h3>Does this use ATR or a lookback period?</h3>
+<p>No. Swing points and BOS/CHoCH are confirmed purely by candle close — no ATR multiplier, no fixed lookback, no fractals to configure.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between Minor and Major structure?</h3>
+<p>Minor is internal structure — every swing as it forms. Major filters that down to swing-level structure. Both run independently and can be toggled and styled separately.</p>
+</div>
+<div class="faq-item">
+<h3>Does it repaint?</h3>
+<p>No. A swing or a BOS/CHoCH only confirms once a candle closes beyond the relevant level — it does not move or disappear on later bars.</p>
+</div>
+<div class="faq-item">
+<h3>Is the trial limited?</h3>
+<p>The trial is the full version, limited to 1 day. No signup, no email required.</p>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+<div class="container">
+<div class="cta">
+<h2>Get Market Structure</h2>
+<p>Minor + Major swing structure, BOS/CHoCH, no repaint · Lifetime license · Support included</p>
+<div class="btn-group" style="justify-content:center">
+<a href="https://solodyn.gumroad.com/l/marketstructure" class="btn btn-primary" target="_blank">Get on Gumroad — $99</a>
+<a href="downloads/MarketStructure.zip" class="btn btn-trial" download>Try free for 1 day</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- NinjaTrader Disclaimer -->
+<div class="container">
+<section class="disclaimer">
+<a href="https://ninjatrader.com/GetStarted" target="_blank" rel="noopener" class="nt-logo-link">
+<img src="ninjatrader-wordmark.png" alt="NinjaTrader" class="nt-logo" width="220" height="28" loading="lazy">
+</a>
+<p><a href="https://ninjatraderecosystem.com/" target="_blank">NinjaTrader Ecosystem</a> Vendor.</p>
+<p><strong>Risk Disclosure:</strong> Futures and forex trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing one's financial security or lifestyle. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</p>
+<p>NinjaTrader&reg; is a registered trademark of NinjaTrader Group, LLC. No NinjaTrader company has any affiliation with the owner, developer, or provider of the products or services described herein, or any interest, ownership or otherwise, in any such product or service, or endorses, recommends or approves any such product or service.</p>
+<p><a href="disclosures.html">Full disclosures</a></p>
+</section>
+</div>
+
+<footer class="footer">
+<div class="container">
+<p>© 2026 Yevhen Solod · <a href="index.html">yevhensolod.studio</a></p>
+</div>
+</footer>
+
+</body>
+</html>
