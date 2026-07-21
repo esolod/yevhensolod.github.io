@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order P&amp;L Labels Indicator for NinjaTrader 8 | Yevhen Solod</title>
+<meta name="description" content="Order P&L Labels for NinjaTrader 8: live $ P&L attached directly to working Profit Target and Stop Loss orders, next to ChartTrader lines. Dollar, points or ticks. Free 1-day trial.">
+<link rel="canonical" href="https://yevhensolod.studio/order-pnl-labels.html">
+
+<meta property="og:type" content="product">
+<meta property="og:title" content="Order P&L Labels Indicator for NinjaTrader 8">
+<meta property="og:description" content="Live P&L labels on every working ChartTrader order — dollar, points or ticks, zero setup, no repaint. Free 1-day trial.">
+<meta property="og:image" content="https://yevhensolod.studio/og-orderpnllabels.png">
+<meta property="og:url" content="https://yevhensolod.studio/order-pnl-labels.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Order P&L Labels Indicator for NinjaTrader 8",
+  "description": "Attaches live profit/loss information directly to working Profit Target and Stop Loss orders on the chart, next to the ChartTrader order lines. Calculated from actual position size and average price, with dollar, points and tick display modes.",
+  "image": "https://yevhensolod.studio/og-orderpnllabels.png",
+  "sku": "OPL-NT8-9",
+  "brand": { "@type": "Brand", "name": "Yevhen Solod" },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://solodyn.gumroad.com/l/orderpnllabels",
+    "price": "9.00",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this work with ChartTrader automatically?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. There's no setup — it reads your account, position and working orders directly from ChartTrader and labels them as soon as they appear on the chart." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I show P&L in points or ticks instead of dollars?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. There are three display modes — dollar amount, points, and ticks — and you can toggle any combination of them on at once." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with Sim and live accounts?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, it works with any connected account, Sim or live, with no additional configuration." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it repaint or lag behind the position?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Labels update in real time from actual position size and average price as orders and fills change, and nothing repaints." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free trial?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. A 1-day trial of the full version is available with no signup required." }
+    }
+  ]
+}
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5ETQBRGPSS"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ETQBRGPSS');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0d1117;--bg2:#161b22;--bg3:#1c2128;
+--text:#e6edf3;--text2:#8b949e;--text3:#6e7681;
+--border:#30363d;
+--blue:#6495ED;--orange:#FF8C00;--green:#97C459;--purple:#AFA9EC;
+--radius:10px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--blue);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+.container{max-width:720px;margin:0 auto;padding:0 24px}
+
+/* Top nav */
+.topnav{padding:20px 0;border-bottom:1px solid var(--border)}
+.topnav a{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text2)}
+.topnav a:hover{color:var(--text)}
+
+/* Hero */
+.hero{padding:56px 0 40px}
+.hero h1{font-size:30px;font-weight:700;letter-spacing:-0.5px;margin-bottom:12px;line-height:1.25}
+.hero .sub{font-size:16px;color:var(--text2);margin-bottom:20px;line-height:1.7}
+.price-line{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--orange);margin-bottom:24px}
+.btn{display:inline-block;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:11px 26px;border-radius:8px;transition:all .2s;cursor:pointer;text-align:center}
+.btn-primary{background:var(--orange);color:#000;border:none}
+.btn-primary:hover{opacity:.9;color:#000}
+.btn-trial{background:transparent;color:var(--text2);border:1px solid var(--border);font-size:13px}
+.btn-trial:hover{border-color:var(--text2);color:var(--text);opacity:1}
+.btn-group{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.trial-note{font-size:11px;color:var(--text3);margin-top:8px}
+.product-tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 24px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:20px;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.tag.blue{background:rgba(100,149,237,.12);color:var(--blue);border-color:rgba(100,149,237,.25)}
+.tag.orange{background:rgba(255,140,0,.10);color:var(--orange);border-color:rgba(255,140,0,.2)}
+.tag.green{background:rgba(151,196,89,.10);color:var(--green);border-color:rgba(151,196,89,.2)}
+.tag.purple{background:rgba(175,169,236,.10);color:var(--purple);border-color:rgba(175,169,236,.2)}
+
+/* Sections */
+.section{padding:40px 0}
+.section-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:24px}
+.section h2{font-size:20px;font-weight:600;margin-bottom:16px}
+.section p{font-size:14px;color:var(--text2);margin-bottom:14px;line-height:1.8}
+.section strong{color:var(--text)}
+
+/* Feature cards */
+.features{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.feature{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.feature h3{font-size:14px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.feature p{font-size:13px;color:var(--text2);line-height:1.7;margin:0}
+
+/* Steps */
+.steps{counter-reset:step}
+.step{display:flex;gap:14px;margin-bottom:16px}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--orange);min-width:24px;font-weight:600}
+.step p{margin:0}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border);padding:18px 0}
+.faq-item h3{font-size:15px;font-weight:600;margin-bottom:8px}
+.faq-item p{margin:0}
+
+/* Screenshot */
+.shot{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:20px;overflow:hidden}
+.shot img{display:block;width:100%;height:auto}
+
+/* CTA */
+.cta{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;text-align:center}
+.cta h2{margin-bottom:8px}
+.cta p{margin-bottom:20px}
+
+/* Disclaimer / Footer */
+.disclaimer{padding:40px 0;border-top:1px solid var(--border);margin-top:48px}
+.nt-logo-link{display:inline-block;padding:18px;margin:-18px -18px 6px -18px}
+.nt-logo{display:block;width:220px;height:auto}
+.disclaimer p{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:12px}
+.disclaimer a{color:var(--text2);text-decoration:underline}
+.footer{padding:24px 0;text-align:center}
+.footer p{font-size:12px;color:var(--text3)}
+
+@media(max-width:600px){
+.hero h1{font-size:24px}
+.features{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+<div class="container">
+<a href="index.html">← Yevhen Solod · NinjaTrader 8 Developer</a>
+</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+<div class="container">
+<h1>Order P&amp;L Labels for NinjaTrader 8</h1>
+<p class="sub">Attaches live profit/loss information directly to your working Profit Target and Stop Loss orders, right next to the ChartTrader lines — calculated from your actual position size and average price, updated in real time.</p>
+<div class="product-tags">
+<span class="tag green">Live P&amp;L</span>
+<span class="tag blue">$ / Points / Ticks</span>
+<span class="tag orange">ChartTrader</span>
+<span class="tag purple">Zero Setup</span>
+<span class="tag">No Repaint</span>
+<span class="tag">Sim &amp; Live</span>
+</div>
+<p class="price-line">$9</p>
+<div class="btn-group">
+<a href="https://solodyn.gumroad.com/l/orderpnllabels" class="btn btn-primary" target="_blank">Get on Gumroad</a>
+<a href="downloads/OrderPnlLabels.zip" class="btn btn-trial" download>Try for free</a>
+</div>
+<p class="trial-note">1-day trial · Full version · No signup required</p>
+</div>
+</section>
+
+<!-- Screenshot -->
+<section class="section">
+<div class="container">
+<div class="shot">
+<img src="screens/order-pnl-labels-main.png" alt="Order P&L Labels indicator on a NinjaTrader 8 chart showing live P&L next to ChartTrader Target and Stop lines" loading="lazy">
+</div>
+</div>
+</section>
+
+<!-- Features -->
+<section class="section">
+<div class="container">
+<div class="section-title">What it does</div>
+<div class="features">
+<div class="feature">
+<h3>Live $ P&amp;L on every working order</h3>
+<p>Calculated from your actual position size and average price, not just the order's distance from market.</p>
+</div>
+<div class="feature">
+<h3>Three display modes</h3>
+<p>Dollar amount, points, and ticks — toggle any combination on at once, per order.</p>
+</div>
+<div class="feature">
+<h3>Zero setup</h3>
+<p>Reads account, position, and working orders automatically from ChartTrader — nothing to map or configure.</p>
+</div>
+<div class="feature">
+<h3>Color-matched to ChartTrader</h3>
+<p>Labels follow your existing ChartTrader Target and Stop brush colors, so they read as part of the same order line.</p>
+</div>
+<div class="feature">
+<h3>Adjustable Marker Shift</h3>
+<p>Offset labels so they don't overlap the ChartTrader order lines they're attached to.</p>
+</div>
+<div class="feature">
+<h3>Real-time, no repaint</h3>
+<p>Updates every tick with fills, size changes, and order modifications — nothing is ever inferred or delayed.</p>
+</div>
+<div class="feature">
+<h3>Works with any connected account</h3>
+<p>Sim or live, no extra configuration required to switch between them.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Why -->
+<section class="section">
+<div class="container">
+<div class="section-title">Why P&amp;L on the order lines</div>
+<p>ChartTrader shows you where your Profit Target and Stop Loss sit, but not what either one is actually worth in dollars, points, or ticks — you're left doing the math yourself, or switching to the Positions tab mid-trade.</p>
+<p>Order P&amp;L Labels closes that gap by attaching the live figure directly to each working order, calculated from your real position size and average price. It sits next to the ChartTrader line it belongs to, color-matched so it reads as part of the same order, and updates every tick with no repaint.</p>
+<p>Typical use: managing size and risk at a glance while a trade is open, without leaving the chart or doing mental math on stop distance.</p>
+</div>
+</section>
+
+<!-- Installation -->
+<section class="section">
+<div class="container">
+<div class="section-title">Installation</div>
+<div class="steps">
+<div class="step"><span class="step-num">1</span><p>Download the .zip file (trial or full version from Gumroad).</p></div>
+<div class="step"><span class="step-num">2</span><p>In NinjaTrader 8: <strong>Tools → Import → NinjaScript Add-On</strong>, select the .zip.</p></div>
+<div class="step"><span class="step-num">3</span><p>Restart NinjaTrader and add <strong>Order P&amp;L Labels</strong> to any chart.</p></div>
+<div class="step"><span class="step-num">4</span><p>Full version: send your Machine ID after purchase — activation is confirmed the same day, then restart NT8.</p></div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+<div class="container">
+<div class="section-title">FAQ</div>
+<div class="faq-item">
+<h3>Does this work with ChartTrader automatically?</h3>
+<p>Yes. There's no setup — it reads your account, position and working orders directly from ChartTrader and labels them as soon as they appear on the chart.</p>
+</div>
+<div class="faq-item">
+<h3>Can I show P&amp;L in points or ticks instead of dollars?</h3>
+<p>Yes. There are three display modes — dollar amount, points, and ticks — and you can toggle any combination of them on at once.</p>
+</div>
+<div class="faq-item">
+<h3>Does it work with Sim and live accounts?</h3>
+<p>Yes, it works with any connected account, Sim or live, with no additional configuration.</p>
+</div>
+<div class="faq-item">
+<h3>Does it repaint or lag behind the position?</h3>
+<p>No. Labels update in real time from actual position size and average price as orders and fills change, and nothing repaints.</p>
+</div>
+<div class="faq-item">
+<h3>Is the trial limited?</h3>
+<p>The trial is the full version, limited to 1 day. No signup, no email required.</p>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+<div class="container">
+<div class="cta">
+<h2>Get Order P&amp;L Labels</h2>
+<p>Live $ / points / ticks on every working order, zero setup, no repaint · Lifetime license · Support included</p>
+<div class="btn-group" style="justify-content:center">
+<a href="https://solodyn.gumroad.com/l/orderpnllabels" class="btn btn-primary" target="_blank">Get on Gumroad — $9</a>
+<a href="downloads/OrderPnlLabels.zip" class="btn btn-trial" download>Try free for 1 day</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- NinjaTrader Disclaimer -->
+<div class="container">
+<section class="disclaimer">
+<a href="https://ninjatrader.com/GetStarted" target="_blank" rel="noopener" class="nt-logo-link">
+<img src="ninjatrader-wordmark.png" alt="NinjaTrader" class="nt-logo" width="220" height="28" loading="lazy">
+</a>
+<p><a href="https://ninjatraderecosystem.com/" target="_blank">NinjaTrader Ecosystem</a> Vendor.</p>
+<p><strong>Risk Disclosure:</strong> Futures and forex trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing one's financial security or lifestyle. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</p>
+<p>NinjaTrader&reg; is a registered trademark of NinjaTrader Group, LLC. No NinjaTrader company has any affiliation with the owner, developer, or provider of the products or services described herein, or any interest, ownership or otherwise, in any such product or service, or endorses, recommends or approves any such product or service.</p>
+<p><a href="disclosures.html">Full disclosures</a></p>
+</section>
+</div>
+
+<footer class="footer">
+<div class="container">
+<p>© 2026 Yevhen Solod · <a href="index.html">yevhensolod.studio</a></p>
+</div>
+</footer>
+
+</body>
+</html>
